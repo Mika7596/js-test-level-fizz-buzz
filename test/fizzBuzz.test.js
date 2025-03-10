@@ -1,5 +1,6 @@
 const { expect } = require("@jest/globals");
-import { FizzBuzz } from "../src/FizzBuzz";
+// import { getNumber } from "../src/fizzBuzz";
+const {getNumber, historial} = require ("../src/fizzBuzz.js")
 
 /**
  * CASOS DE PRUEBA
@@ -27,7 +28,7 @@ describe('FizzBuzz test for multiples of 3 and 5', () => {
                 //salida
             let respuesta_esperada = "Fizz";
                 //proceso - caja negra
-            let fizz_buzz = new FizzBuzz();
+            let fizz_buzz = new getNumber();
 
             // Act: ejecutar el escenario
             let resultado = fizz_buzz.respoder_fizz_buzz(valor_entrada);
@@ -36,20 +37,20 @@ describe('FizzBuzz test for multiples of 3 and 5', () => {
             expect(resultado).toBe(respuesta_esperada);
         });
         test('test_returns_Buzz_when_multiple_5', () => {
-            //Gherking test
-            /**
-             * Scenario: Número divisible por 5
-             * Given un número 10
-             * When el número es procesado
-             * Then se muestra "Buzz"
-             */
-
-            // Arrange
-
-            // Act
-    
-            // Assert
-    
+            const result = getNumber(95);
+            expect(result).toBe("Buzz");
+        });
+        test("Test returns FizzBuzz when the input is multiple of 15", () =>{
+            const result = getNumber(30);
+            expect(result).toBe("FizzBuzz");
+        });
+        test('Should pass if returns the input in case it isn\'t a multiple of 3 nor 5', () =>{
+            const result = getNumber(2);
+            expect(result).toBe(2);
+        });
+        test("Should show an error if receives an invalid number", () =>{
+            const result = getNumber("");
+            expect(result).toContain("Invalid")
         })
     }
 )
